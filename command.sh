@@ -1,14 +1,11 @@
 #!bin/sh
 
-DIR = 'e:\Projects'
-USERNAME = 'abdullahth' # Change this to your own username
-
 function create(){
     cd 
-    cd $DIR
+    cd 'e:\Projects'
     echo "Creating Online Repository"
-    py create.py
-    git clone https://github.com/$USERNAME/$1.git
+    python 'E:\Projects\Dev Kit\create.py' $1
+    git clone https://github.com/abdullahth/$1.git
     cd $1
     git init
     # Initilize the Repository
@@ -19,6 +16,7 @@ function create(){
     # Opening Visual Studio Code --> Change it with the command of your text editor
     echo "Openning Visual Studio Code"
     code .
+    start cmd
 }
 
 function file(){
