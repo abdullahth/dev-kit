@@ -13,9 +13,6 @@ current = user.User()
 USERNAME = current.username
 PASSWORD = current.password
 
-current.Data['Repos'][sys.argv[1]] = datetime.datetime.now()
-
-
 browser = webdriver.Chrome(ChromeDriverManager().install()) # installing the latest version of chrome driver
 browser.get("https://github.com/login")
 
@@ -54,3 +51,7 @@ time.sleep(2)
 PATH = '#new_repository > div.js-with-permission-fields > button'
 elemnet = WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, PATH)))
 elemnet.click()
+
+current.Data['Repos'][sys.argv[1]] = {'Time': datetime.datetime.now(), 'Link': browser.current_url}
+
+current.close()
