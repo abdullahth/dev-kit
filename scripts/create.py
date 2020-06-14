@@ -7,11 +7,13 @@ from selenium.webdriver.support import expected_conditions as EC
 import user
 import sys
 import time
+import datetime
 
 current = user.User()
 USERNAME = current.username
 PASSWORD = current.password
 
+current.Data['Repos'][sys.argv[1]] = datetime.datetime.now()
 
 
 browser = webdriver.Chrome(ChromeDriverManager().install()) # installing the latest version of chrome driver
