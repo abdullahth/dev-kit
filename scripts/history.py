@@ -8,9 +8,6 @@ sys.path.insert(0, parent)
 
 import user
 
-names = []
-date = []
-link = []
 current = user.User()
 current = current.Data
 
