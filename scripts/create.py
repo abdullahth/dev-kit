@@ -4,12 +4,21 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import user
-import sys
 import time
 import datetime
 
-current = user.User()
+# Importing User File
+import sys
+import os
+import inspect
+directory = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parent = os.path.dirname(directory)
+sys.path.insert(0, parent)
+
+import user
+
+
+current = user.User(include_repo=True)
 USERNAME = current.username
 PASSWORD = current.password
 
@@ -46,12 +55,11 @@ elemnet.click()
 PATH = '//*[@id="repository_name"]'
 elemnet = WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.XPATH, PATH)))
 elemnet.send_keys(sys.argv[1])
-time.sleep(2)
+time.sleep(3.5)
 
 PATH = '#new_repository > div.js-with-permission-fields > button'
 elemnet = WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, PATH)))
 elemnet.click()
 
-current.Data['Repos'][sys.argv[1]] = {'Time': datetime.datetime.now(), 'Link': browser.current_url}
-
-current.close()
+current.save([sys.argv[1]], datetime.datetime.now(), browser.current_url)
+current.close(include_repo=True)

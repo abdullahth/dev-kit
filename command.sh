@@ -1,13 +1,10 @@
 #!bin/sh
-USERNAME = 'abdullahth'
 function create(){
-    cd 
     cd scripts # You Can Use it or change it with your own desired directory
-    echo "Creating Online Repository"
     python create.py $1
     cd 
     cd 'e:\Projects' # You Can Use it or change it with your own desired directory
-    git clone https://github.com/$USERNAME/$1.git
+    git clone https://github.com/abdullahth/$1.git
     cd $1
     git init
     # Initilize the Repository
@@ -19,6 +16,8 @@ function create(){
     echo "Openning Visual Studio Code"
     code .
     start cmd
+    clear
+    echo "Your Repository($1) Created Successfullly"
 }
 
 function file(){
