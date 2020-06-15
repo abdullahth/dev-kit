@@ -1,11 +1,13 @@
 #!bin/sh
-
+USERNAME = 'abdullahth'
 function create(){
     cd 
-    cd 'e:\Projects'
+    cd scripts # You Can Use it or change it with your own desired directory
     echo "Creating Online Repository"
-    python 'E:\Projects\Dev Kit\create.py' $1
-    git clone https://github.com/abdullahth/$1.git
+    python create.py $1
+    cd 
+    cd 'e:\Projects' # You Can Use it or change it with your own desired directory
+    git clone https://github.com/$USERNAME/$1.git
     cd $1
     git init
     # Initilize the Repository
@@ -26,8 +28,21 @@ function file(){
     git push
 }
 
+function -his(){
+    cd scripts
+    py history.py
+}
+
+function open(){
+    # Open an Existing Repository in vs code
+    cd
+    cd e:\Projects
+    cd $1
+    code .
+}
+
 function delete(){
-    # Delete the whole Repositry localy and online from github
+    # Delete the whole Repository localy and online from github
 }
 
 function delfile(){
