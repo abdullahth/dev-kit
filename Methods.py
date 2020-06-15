@@ -16,3 +16,19 @@ def rmtree_onerror(function, path, exec_info):
         function(path)
     
 
+def export_vars(username, path):
+    '''
+    Writes a shell File with the Important Variable for commands.sh
+    Example:
+
+    export USERNAME='Value'
+    export DIR='Value'
+    '''
+    import os
+
+    with open(os.path.join(os.path.dirname(__file__), 'dataset/vars.sh'), 'w') as f:
+        f.write(
+            "export USERNAME=\"{}\"\nexport DIR=\"{}\"".format(username, path)
+        )
+
+export_vars('abdullahth', 'e:/Projects')
