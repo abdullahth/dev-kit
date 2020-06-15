@@ -5,10 +5,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException # for try/except block
-import time
-import datetime
+import shutil
 
-# Importing User File
+# Importing User/Methods File
 import sys
 import os
 import inspect
@@ -17,7 +16,7 @@ parent = os.path.dirname(directory)
 sys.path.insert(0, parent)
 
 import user
-
+import Methods
 
 current = user.User(include_repo=True)
 USERNAME = current.username
@@ -30,6 +29,10 @@ else:
 
 def delete():
     '''Commands Will be in the Method To reference it easilly into the if block'''
+    # Delete The File
+    shutil.rmtree("e:/projects/{}".format(sys.argv[1]), onerror=Methods.rmtree_onerror)
+
+    # Delete Online Repository
     browser = webdriver.Chrome(ChromeDriverManager().install()) # installing the latest version of chrome driver
     browser.get("""https://github.com/{}/{}""".format(USERNAME, sys.argv[1]))
 
