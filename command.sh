@@ -1,10 +1,12 @@
 #!bin/sh
+source dataset/vars.sh
+
 function create(){
     cd scripts # You Can Use it or change it with your own desired directory
     python create.py $1
     cd 
-    cd 'e:\Projects' # You Can Use it or change it with your own desired directory
-    git clone https://github.com/abdullahth/$1.git
+    cd "$DIR" # You Can Use it or change it with your own desired directory
+    git clone "https://github.com/$USERNAME/$1.git"
     cd $1
     git init
     # Initilize the Repository
@@ -15,7 +17,6 @@ function create(){
     # Opening Visual Studio Code --> Change it with the command of your text editor
     echo "Openning Visual Studio Code"
     code .
-    start cmd
     clear
     echo "Your Repository($1) Created Successfullly"
 }
@@ -32,16 +33,10 @@ function -his(){
     py history.py
 }
 
-function open(){
-    # Open an Existing Repository in vs code
-    cd
-    cd e:\Projects
-    cd $1
-    code .
-}
-
 function delete(){
     # Delete the whole Repository localy and online from github
+    cd scripts
+    py delete.py $1
 }
 
 function delfile(){
