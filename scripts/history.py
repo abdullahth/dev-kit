@@ -1,4 +1,4 @@
-# Importing User File
+# Join Parent Dirctory
 import sys
 import os
 import inspect
@@ -9,13 +9,11 @@ sys.path.insert(0, parent)
 import user
 
 current = user.User()
-current = current.Data
+current = current.repos()
 
-if len(current['Repos']) == 0:
+if len(current[0]) == 0:
     print('You have not created any repositories yet.')
     print('You can create one by: create <Repositry Name>')
 else:
-    for repo in current['Repos']:
-        repository = current['Repos'][repo]
-        print('Repository Name: ', repo, ' | Created in: ', repository['Time'])
-        print('You Can Open the Repository by: open <Repository Name>')
+    for name, date in zip(current[0], current[1]):
+        print('Repository Name: ', name, ' | Created in: ', date)
